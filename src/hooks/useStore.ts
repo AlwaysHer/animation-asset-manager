@@ -1,7 +1,7 @@
 // Zustand 状态管理
 
 import { create } from 'zustand';
-import type { Asset, Annotation, ExportConfig, ExportFormat } from '../types';
+import type { Asset, Annotation, ExportConfig } from '../types';
 import * as api from '../services/api';
 
 interface AppState {

@@ -18,9 +18,9 @@ interface Point {
 }
 
 export function AnnotationCanvas({
-  asset,
+  asset: _asset,
   annotations,
-  currentFrameIndex,
+  currentFrameIndex: _currentFrameIndex,
   isDrawing,
   onAnnotationCreate,
   className = '',

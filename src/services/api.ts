@@ -1,7 +1,7 @@
 // Tauri API 封装
 
 import { invoke } from '@tauri-apps/api/core';
-import type { Asset, Annotation, ExportConfig, ExportFormat, FrameRange } from '../types';
+import type { Asset, Annotation, ExportFormat, FrameRange } from '../types';
 
 // 素材管理
 export async function createAsset(sourcePath: string): Promise<Asset> {

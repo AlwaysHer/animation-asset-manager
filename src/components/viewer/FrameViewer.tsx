@@ -28,7 +28,9 @@ class FrameCache {
     if (this.cache.size >= this.maxSize) {
       // 删除最旧的
       const firstKey = this.cache.keys().next().value;
-      this.cache.delete(firstKey);
+      if (firstKey !== undefined) {
+        this.cache.delete(firstKey);
+      }
     }
     this.cache.set(index, image);
   }
@@ -59,7 +61,7 @@ export function FrameViewer({ asset, annotations, className = '' }: FrameViewerP
   const [isLoading, setIsLoading] = useState(false);
   const [scale, setScale] = useState(1);
   const [isDrawing, setIsDrawing] = useState(false);
-  const [activeAnnotation, setActiveAnnotation] = useState<Annotation | null>(null);
+  const [_activeAnnotation, _setActiveAnnotation] = useState<Annotation | null>(null);
 
   // 加载帧图像
   const loadFrame = useCallback(async (index: number) => {
