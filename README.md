@@ -110,3 +110,4 @@ npm run tauri build
 ## License
 
 MIT# animation-asset-manager
+# animation-asset-manager
