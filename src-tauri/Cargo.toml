@@ -1,0 +1,48 @@
+[package]
+name = "animation-asset-manager"
+version = "0.1.0"
+description = "Animation Asset Manager - 动画素材管理器"
+authors = ["Kimi Claw"]
+license = "MIT"
+repository = ""
+edition = "2021"
+rust-version = "1.70"
+
+[build-dependencies]
+tauri-build = { version = "2.0.0", features = [] }
+
+[dependencies]
+tauri = { version = "2.0.0", features = [] }
+tauri-plugin-shell = "2.0.0"
+tauri-plugin-dialog = "2.0.0"
+tauri-plugin-fs = "2.0.0"
+tauri-plugin-store = "2.0.0"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["full"] }
+anyhow = "1.0"
+thiserror = "1.0"
+rusqlite = { version = "0.31", features = ["bundled", "chrono", "serde_json"] }
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1.6", features = ["v4", "serde"] }
+dirs = "5.0"
+image = "0.24"
+gif = "0.12"
+walkdir = "2.4"
+regex = "1.10"
+reqwest = { version = "0.12", features = ["json", "stream"] }
+futures = "0.3"
+
+# FFmpeg bindings
+ffmpeg-next = { version = "7.0", optional = true }
+
+[features]
+default = ["ffmpeg"]
+ffmpeg = ["dep:ffmpeg-next"]
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+lto = true
+opt-level = 3
+strip = true
