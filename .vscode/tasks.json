@@ -1,0 +1,57 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "启动 Tauri 开发模式",
+      "type": "shell",
+      "command": "python",
+      "args": ["scripts/dev.py"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "new"
+      }
+    },
+    {
+      "label": "启动前端开发服务器",
+      "type": "shell",
+      "command": "python",
+      "args": ["scripts/web.py"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "new"
+      }
+    },
+    {
+      "label": "构建 Windows 发布版",
+      "type": "shell",
+      "command": "python",
+      "args": ["scripts/build.py"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "new"
+      }
+    },
+    {
+      "label": "检查开发环境",
+      "type": "shell",
+      "command": "python",
+      "args": ["scripts/check.py"],
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "new"
+      }
+    }
+  ]
+}

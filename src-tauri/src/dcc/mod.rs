@@ -103,7 +103,7 @@ if cmds.objExists(plane[0]):
     # 重命名
     cmds.rename(plane[0], "aam_sequence_plane")
     print("已创建imagePlane: aam_sequence_plane")
-    print("帧率: {}fps".format({}))
+    print("帧率: {{}}fps".format({}))
 "#, pattern, fps)
 }
 
@@ -149,7 +149,7 @@ output.location = (300, 0)
 links.new(tex_node.outputs['Color'], output.inputs['Base Color'])
 
 print("已创建图像平面: aam_sequence_plane")
-print("总帧数: {}".format({}))
+print("总帧数: {{}}".format({}))
 "#, pattern, frame_count, frame_count)
 }
 

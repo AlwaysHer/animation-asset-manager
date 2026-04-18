@@ -1,0 +1,14 @@
+{
+  "identifier": "default",
+  "description": "Default permissions for Animation Asset Manager",
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "shell:allow-open",
+    "dialog:allow-open",
+    "dialog:allow-save",
+    "fs:allow-read",
+    "fs:allow-write",
+    "fs:allow-read-dir"
+  ]
+}

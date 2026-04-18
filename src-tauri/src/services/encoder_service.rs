@@ -25,7 +25,7 @@ impl EncoderService {
         // 确定帧范围
         let (start_frame, end_frame) = match frame_range {
             crate::models::FrameRange::All => (1, asset.frame_count),
-            crate::models::FrameRange::Range { start, end } => {
+            crate::models::FrameRange::Custom { start, end } => {
                 // 边界处理 (Define Errors Out)
                 let start = start.min(asset.frame_count);
                 let end = end.min(asset.frame_count);
@@ -71,7 +71,7 @@ impl EncoderService {
                 cmd.arg("-vf").arg("fps=30,scale=480:-1:flags=lanczos,split[s0][s1];[s0]palettegen=max_colors=256[p];[s1][p]paletteuse=dither=bayer")
                    .arg("-loop").arg("0");
             }
-            crate::models::ExportFormat::WebM => {
+            crate::models::ExportFormat::Webm => {
                 cmd.arg("-c:v").arg("libvpx-vp9")
                    .arg("-crf").arg("30")
                    .arg("-b:v").arg("0");

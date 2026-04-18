@@ -8,6 +8,7 @@ use std::path::PathBuf;
 use crate::models::*;
 use crate::services::{StorageService, DecoderService, EncoderService};
 use crate::dcc::{ExportConfig, ExportFormat, FrameRange, generate_maya_import_script, generate_blender_import_script};
+use image::GenericImageView;
 
 // =============================================================================
 // 应用状态
@@ -218,7 +219,7 @@ pub fn export_asset(
     asset_id: String,
     config: ExportConfig,
 ) -> Result<String, String> {
-    let storage = state.storage.lock().map_err(|e| e.to_string())?;
+    let mut storage = state.storage.lock().map_err(|e| e.to_string())?;
     
     let asset = storage.get_asset(&asset_id)
         .map_err(|e| e.to_string())?
@@ -232,7 +233,7 @@ pub fn export_asset(
     }
     
     // 执行导出
-    match config.format {
+    match config.format.clone() {
         ExportFormat::PngSequence => {
             export_png_sequence(&asset, &output_path, &config.frame_range)?;
         }
@@ -241,8 +242,8 @@ pub fn export_asset(
             state.encoder.encode_with_annotations(
                 &asset,
                 &output_path,
-                config.format.into(),
-                config.frame_range.into(),
+                config.format.clone().into(),
+                config.frame_range.clone().into(),
                 config.include_annotations,
             ).map_err(|e| format!("Export failed: {}", e))?;
         }
@@ -372,7 +373,7 @@ impl From<ExportFormat> for crate::models::ExportFormat {
     fn from(f: ExportFormat) -> Self {
         match f {
             ExportFormat::PngSequence => crate::models::ExportFormat::ImageSequence,
-            ExportFormat::H264 => crate::models::ExportFormat::H264,
+            ExportFormat::H264 => crate::models::ExportFormat::H264 { quality: crate::models::H264Quality::High },
             ExportFormat::ProRes => crate::models::ExportFormat::ProRes,
             ExportFormat::Gif => crate::models::ExportFormat::Gif,
             ExportFormat::WebM => crate::models::ExportFormat::Webm,

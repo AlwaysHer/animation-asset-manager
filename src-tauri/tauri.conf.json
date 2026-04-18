@@ -38,7 +38,7 @@
   "app": {
     "security": {
       "csp": null,
-      "capabilities": ["default", "shell-allow", "dialog-allow", "fs-allow"]
+      "capabilities": ["default"]
     },
     "windows": [
       {

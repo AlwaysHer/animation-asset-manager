@@ -166,7 +166,7 @@ impl StorageService {
         if asset.is_some() {
             self.db.execute(
                 "UPDATE assets SET view_count = view_count + 1, last_viewed_at = ? WHERE id = ?",
-                [Utc::now().to_rfc3339(), id],
+                [Utc::now().to_rfc3339(), id.to_string()],
             )?;
         }
         
@@ -269,7 +269,7 @@ impl StorageService {
              ORDER BY created_at"
         )?;
         
-        let annotations = stmt.query_map([asset_id, frame_index as i64], |row| {
+        let annotations = stmt.query_map(rusqlite::params![asset_id, frame_index as i64], |row| {
             self.row_to_annotation(row)
         })?
         .collect::<Result<Vec<_>, _>>()?;
