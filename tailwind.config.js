@@ -23,4 +23,9 @@ export default {
     },
   },
   plugins: [],
+  "bundle": {
+  "active": true,
+  "targets": "all",
+  "icon": []
+}
 }
